@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug 'fcfs' (Launch)",
+            "request": "launch",
+            "mainClass": "Nachos",
+            "args" : " -st fcfs ",
+            "classPaths":  ["machine", "filesys", "threads",".", "test", "userprog", "/user/local/java/jre/lib/rt.jar"]
+        },
+
+        {
+            "type": "java",
+            "name": "Debug 'rr' (Launch)",
+            "request": "launch",
+            "mainClass": "Nachos",
+            "args" : " -st rr ",
+            "classPaths":  ["machine", "filesys", "threads",".", "test", "userprog", "/user/local/java/jre/lib/rt.jar"]
+        }
+    ]
+}
