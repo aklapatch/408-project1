@@ -118,7 +118,23 @@ class Scheduler {
     {
        case POLICY_FCFS: 
 	  readyList.append(thread);
-	  break;
+    break;
+      case POLICY_SJF_NP:
+        readyList.sortedInsert(thread, thread.timeLeft);
+        break;
+
+      case POLICY_SJF_P:
+        readyList.sortedInsert(thread, thread.timeLeft);
+        break;
+
+      case POLICY_PRIO_NP:
+        readyList.sortedInsert(thread,thread.priority);
+        break;
+
+      case POLICY_PRIO_P:
+        readyList.sortedInsert(thread,thread.priority);
+        break;
+
        default:
 	  readyList.append(thread);
 	  break;
@@ -134,6 +150,7 @@ class Scheduler {
   //----------------------------------------------------------------------
 
   public static NachosThread findNextToRun() {
+
     return (NachosThread)readyList.remove();
   }
 
@@ -225,7 +242,21 @@ class Scheduler {
   public static boolean shouldISwitch(NachosThread current, NachosThread newThread)
   {
      //MP1 preemption code
-     
+
+     // this is for SJF 
+     if (policy == Scheduler.POLICY_SJF_P){
+       if (current.timeLeft > newThread.timeLeft){
+         return true;
+       }
+     }
+
+     // for priority scheduling
+     if (policy == Scheduler.POLICY_PRIO_P) {
+       if (current.priority > newThread.priority){
+         return true;
+       }
+     }
+
      return false;  //default
   }
 
