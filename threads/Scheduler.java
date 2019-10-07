@@ -28,11 +28,8 @@
 //class YourHandler 
 class RobinHandler implements Runnable  {
   public void run() {
-NachosThread newThread = Scheduler.findNextToRun();
-    if (newThread != null){
       Scheduler.readyToRun(NachosThread.thisThread());
-      Scheduler.run(newThread);
-    }
+      Scheduler.run(Scheduler.findNextToRun());
   }
 }
 
@@ -182,7 +179,7 @@ class Scheduler {
 
 
     //MP1 Round Robin - schedule an interrupt if necessary
-    if (nextThread.timeLeft < 40 && policy ==Scheduler.POLICY_RR ){
+    if (nextThread.timeLeft > 4 && policy ==Scheduler.POLICY_RR ){
       RobinHandler handle  = new RobinHandler();
       Interrupt.schedule(handle,40, 0);
     }
